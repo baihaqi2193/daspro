@@ -8,7 +8,7 @@
 def mklist():
     return []
 
-## Basic Predicarte
+## Basic Predicate
 # Mengecek List Kosong atau Bukan:
 def IsEmpty(L):
     if L == []:
