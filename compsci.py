@@ -1,14 +1,15 @@
 ## LIST
-## LIBRARY INI BERISI DATABASE CODE UNTUK SET 
+## LIBRARY INI BERISI DATABASE CODE UNTUK LIST
 ## LIBRARY INI DIBUAT DAN DIKUMPULKAN OLEH :
 ## MUHAMAD NUR BAIHAQI (INFORMATIKA UNDIP 2020)
 ## INI ADALAH LIBRARY FUNGSI PRIMITIF
+
 ## Konstruktor:
 def mklist():
     return []
 
-## Basic Predikat
-## Mengecek List Kosong atau Bukan:
+## Basic Predicarte
+# Mengecek List Kosong atau Bukan:
 def IsEmpty(L):
     if L == []:
         return True
@@ -16,7 +17,7 @@ def IsEmpty(L):
         return False
 
 ## Utility
-## Inverse List:
+# Inverse List:
 def Inverse(L):
 	Ls = list(L)
 	Ls.reverse()
@@ -24,12 +25,12 @@ def Inverse(L):
 
 
 ## Selector
-## Mengambil Tail:
+# Mengambil Tail:
 def Tail(L):
     if not(IsEmpty(L)):
         return L[1:]
 
-## Mengambil Head:
+# Mengambil Head:
 def Head(L):
     Ls = list(L)
     Ls.reverse()
@@ -37,15 +38,15 @@ def Head(L):
     Ls.reverse()
     return Ls
 
-## Mengambil Element Pertama:
+# Mengambil Element Pertama:
 def FirstElmt(L):
     return L[0]
 
-## Mengambil Element Terakhir:
+# Mengambil Element Terakhir:
 def LastElmt(L):
     return FirstElmt(Inverse(L))
 
-## Mengambil Element ke N dari List L:
+# Mengambil Element ke N dari List L:
 def ElmtKeN(N, L):
     if IsEmpty(L):
         return "List kosong"
@@ -61,13 +62,13 @@ def ElmtKeN(N, L):
 
 
 ## Add Element ke List :
-## Add ke Awal List
+# Add ke Awal List
 def Konso(e, L):
     Ls = list(L)
     Ls.insert(0,e)
     return Ls
 
-## Add ke Akhir List
+# Add ke Akhir List
 def Konsi(e, L):
     Ls = list(L)
     Ls.append(e)
@@ -75,14 +76,14 @@ def Konsi(e, L):
 
 
 ## Counter
-## Menghitung Jumlah element list:
+# Menghitung Jumlah element list:
 def Nb_Elmt(L):
     if IsEmpty(L):
         return 0
     else:
         return 1 + Nb_Elmt(Tail(L))
 
-## Menghitung Jumlah element dari List L
+# Menghitung Jumlah element dari List L
 def Nb_ElmtX(X,L):
     if IsEmpty(L):
         return 0
@@ -93,14 +94,14 @@ def Nb_ElmtX(X,L):
             return 0 + Nb_ElmtX(X,Tail(L))
 
 ## Advanced Predicate
-## Apakah inverse
+# Mengecek apakah saling inverse
 def IsInverse(La, Lb):
     if Inverse(La) == Lb:
         return True
     else:
         return False
 
-# Apakah member
+# Mengecek apakah n adalah member dari L
 def IsMember(n, L):
     if IsEmpty(L):
         return False
@@ -110,7 +111,7 @@ def IsMember(n, L):
         else :
             return IsMember(n,Tail(L))
 
-# Apakah X elemen ke N dari list L
+# Mengecek apakah X elemen ke N dari list L
 def IsXElmtKeN(X,N,L):
     if IsMember(X,L):
         if N == 1 :
@@ -125,6 +126,7 @@ def IsXElmtKeN(X,N,L):
 
 
 ## Operasi
+# Perkalian list dengan konstanta
 def KaliList(k,L):
     if L == []:
         return []
@@ -194,6 +196,7 @@ def SetElmtZero(e,L):
     else:
         return L
 
+# Mengubah semua elemen list menjadi 0
 def SetAllZero(L):
     if L == []:
         return []
@@ -216,17 +219,6 @@ def Insert(x,L):
 ## MUHAMAD NUR BAIHAQI (INFORMATIKA UNDIP 2020)
 ## INI ADALAH LIBRARY FUNGSI PRIMITIF
 
-## Predikat Dasar
-## Apakah Set:
-def IsSet(L):
-    if L == []:
-        return True
-    else:
-        if Nb_ElmtX(FirstElmt(L),L) > 1:
-            return False
-        else:
-            return IsSet(Tail(L))
-
 ## Konstruktor:
 def MakeSet(L):
         if L == []:
@@ -236,8 +228,19 @@ def MakeSet(L):
                 return MakeSet(Tail(L))
             else:
                 return Konso(FirstElmt(L),MakeSet(Tail(L)))
+## Predikat Dasar
+# Apakah L termasuk set:
+def IsSet(L):
+    if L == []:
+        return True
+    else:
+        if Nb_ElmtX(FirstElmt(L),L) > 1:
+            return False
+        else:
+            return IsSet(Tail(L))
 
 ## Advanced Predicate:
+# Mengecek apakah set H1 dan set H2 saling interseksi
 def IsIntersect(H1,H2):
     if IsSet(H1) and IsSet(H2):
         if (IsEmpty(H1) and not IsEmpty(H2)) or (IsEmpty(H2) and not IsEmpty(H1)):
@@ -252,7 +255,7 @@ def IsIntersect(H1,H2):
     else:
         return "Bukan merupakan set"
 
-## Apakah H1 subset dari H2
+# Mengecek apakah set H1 adalah subset dari H2
 def IsSubset(H1,H2):
     if H1 == []:
         return True
@@ -277,7 +280,7 @@ def MakeIntersect(H1,H2):
         else:
             return MakeIntersect(Tail(H1),H2)
 
-# Menggabungkan semua elemen set
+# Menggabungkan semua elemen set H1 dengan H2
 def MakeUnion(H1,H2):
     if IsEmpty(H1):
         return H2
@@ -289,7 +292,7 @@ def MakeUnion(H1,H2):
         else:
             return MakeUnion(Tail(H1),H2)
 
-# Mengurangi set H1 dengan H2
+# Mengurangi set H1 dengan H2 (Anggota H1 yang tidak ada di H2)
 def MakeMinus(H1,H2):
     if H1 == []:
         return []
@@ -301,15 +304,17 @@ def MakeMinus(H1,H2):
         else:
             return Konso(FirstElmt(H1),MakeMinus(Tail(H1),H2))
 
-# Apakah kedua Set sama
+# Apakah kedua set sama
 def IsEQSet(H1,H2):
     if IsSubset(H1,H2) and IsSubset(H2,H1):
         return True
     else:
         return False
 
-## LOL
-# Apakah list of list
+## LIST OF LIST
+
+## Basic Predicate
+# Apakah S adalah List of List
 def IsLoL(S):
     if S == []:
         return True
@@ -319,7 +324,7 @@ def IsLoL(S):
         else:
             return IsLoL(Tail(S))
 
-# Apakah List of List kosong
+# Mengecek apakah List of List kosong
 def IsEmptyLoL(S):
     return S == []
 
@@ -385,6 +390,7 @@ def Konslo(S1,S2):
     return Ls
 
 ## MATRIX
+## COUNTER
 # Menghitung Banyak Elemen dari suatu Matrix
 def NbEleX(X, L):
     if L == []:
